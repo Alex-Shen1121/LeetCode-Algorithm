@@ -23,11 +23,31 @@ using namespace std;
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-class Solution {
+class Solution
+{
 public:
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-
+    ListNode *mergeTwoLists(ListNode *l1, ListNode *l2)
+    {
+        ListNode *ans, *p;
+        ans = new ListNode(0);
+        p = ans;
+        while (l1 && l2)
+        {
+            if (l1->val < l2->val)
+            {
+                p->next = new ListNode(l1->val);
+                p = p->next;
+                l1=l1->next;
+            }
+            else
+            {
+                p->next = new ListNode(l2->val);
+                p = p->next;
+                l2=l2->next;
+            }
+        }
+        p->next = (l1 == NULL) ? l2 : l1;
+        return ans->next;
     }
 };
 // @lc code=end
-
